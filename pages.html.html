@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anime Encyclopedia</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to top, #ffedf7, #ffe0f2, #ffd0ed); /* pastel anime vibe */
+    text-align: center;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #ff99cc, #ff66aa);
+    color: white;
+    padding: 40px 20px;
+    text-shadow: 0 0 10px #ffe0f2;
+}
+
+header h1 {
+    font-size: 50px;
+}
+
+/* Anime Page Buttons */
+.neon-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background: #ff66aa;
+    border: 2px solid #ff99cc;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.neon-button:hover {
+    background: #ff99cc;
+    color: #fff;
+    transform: translateY(-5px);
+}
+
+/* Anime Cards */
+.anime-card {
+    background: rgba(255,255,255,0.5);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 15px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 0 10px #ff99cc;
+    transition: 0.3s;
+}
+
+.anime-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px #ff66aa;
+}
+
+.anime-card img {
+    width: 120px;
+    border-radius: 10px;
+    border: 2px solid #ff99cc;
+}
+
+.anime-card div {
+    text-align: left;
+}
+
+.anime-card h3 {
+    margin: 0;
+    color: #ff3399;
+}
+
+.anime-card p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 14px;
+    color: #ff66aa;
+    opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌸 Anime Encyclopedia 2026 🌸</h1>
+    <p>Explore your favorite anime with creators, studios, and release info!</p>
+
+    <!-- Navigation Buttons -->
+   <div>
+        <a href="index.html" class="neon-button">🏠 Main Page</a>
+    </div>
+</header>
+
+<div id="animeContainer"></div>
+
+<footer>
+    © 2026 Anime Encyclopedia | Made in VS Code 💖
+</footer>
+
+<script>
+// Example Anime List
+const animeList = [
+      {title:"Demon Slayer: Kimetsu no Yaiba", year:"2026", creator:"Koyoharu Gotouge", studio:"Ufotable", img:"https://upload.wikimedia.org/wikipedia/en/0/0f/Demon_Slayer_Kimetsu_no_Yaiba_season_1.jpg"},
+    {title:"Jujutsu Kaisen", year:"2026", creator:"Gege Akutami", studio:"MAPPA", img:"https://upload.wikimedia.org/wikipedia/en/4/46/Jujutsu_kaisen.jpg"},
+    {title:"Attack on Titan", year:"2023", creator:"Hajime Isayama", studio:"MAPPA", img:"https://upload.wikimedia.org/wikipedia/en/7/7a/Attack_on_Titan_key_visual.jpg"},
+    {title:"Naruto", year:"2002", creator:"Masashi Kishimoto", studio:"Studio Pierrot", img:"https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg"},
+    {title:"One Piece", year:"1999", creator:"Eiichiro Oda", studio:"Toei Animation", img:"https://upload.wikimedia.org/wikipedia/en/6/65/One_Piece_Logo.png"},
+    {title:"My Hero Academia", year:"2016", creator:"Kohei Horikoshi", studio:"Bones", img:"https://upload.wikimedia.org/wikipedia/en/5/5a/My_Hero_Academia_key_visual.jpg"},
+    {title:"Tokyo Revengers", year:"2021", creator:"Ken Wakui", studio:"Liden Films", img:"https://upload.wikimedia.org/wikipedia/en/1/12/Tokyo_Revengers_key_visual.jpg"},
+    {title:"Spy x Family", year:"2022", creator:"Tatsuya Endo", studio:"WIT Studio & CloverWorks", img:"https://upload.wikimedia.org/wikipedia/en/5/5f/Spy_X_Family_cover.jpg"},
+    {title:"Black Clover", year:"2017", creator:"Yūki Tabata", studio:"Studio Pierrot", img:"https://upload.wikimedia.org/wikipedia/en/e/e3/Black_Clover_cover.jpg"},
+    {title:"Bleach", year:"2004", creator:"Tite Kubo", studio:"Studio Pierrot", img:"https://upload.wikimedia.org/wikipedia/en/7/7d/Bleach_cover_volume_1.jpg"},
+    {title:"Spy x Family", year:"2022–Present", creator:"Tatsuya Endo", studio:"WIT Studio & CloverWorks", img:"https://upload.wikimedia.org/wikipedia/en/5/5f/Spy_X_Family_cover.jpg"},
+    {title:"Tokyo Revengers", year:"2021–Present", creator:"Ken Wakui", studio:"Liden Films", img:"https://upload.wikimedia.org/wikipedia/en/1/12/Tokyo_Revengers_key_visual.jpg"},
+    {title:"Haikyuu!!", year:"2014–2020", creator:"Haruichi Furudate", studio:"Production I.G", img:"https://upload.wikimedia.org/wikipedia/en/e/eb/Haikyu!!_Season_1_Key_Visual.jpg"},
+    {title:"Chainsaw Man", year:"2022–Present", creator:"Tatsuki Fujimoto", studio:"MAPPA", img:"https://upload.wikimedia.org/wikipedia/en/3/34/Chainsaw_Man_volume_1.jpg"},
+    {title:"Fullmetal Alchemist: Brotherhood", year:"2009–2010", creator:"Hiromu Arakawa", studio:"Bones", img:"https://upload.wikimedia.org/wikipedia/en/4/4e/Fullmetal_Alchemist_Brotherhood.jpg"},
+    {title:"Death Note", year:"2006–2007", creator:"Tsugumi Ohba & Takeshi Obata", studio:"Madhouse", img:"https://upload.wikimedia.org/wikipedia/en/6/6f/Death_Note_Vol_1.jpg"},
+    {title:"Steins;Gate", year:"2011", creator:"5pb. & Nitroplus", studio:"White Fox", img:"https://upload.wikimedia.org/wikipedia/en/3/39/Steins;GateBox.jpg"},
+    {title:"Sword Art Online", year:"2012–Present", creator:"Reki Kawahara", studio:"A-1 Pictures", img:"https://upload.wikimedia.org/wikipedia/en/d/da/Sword_Art_Online_Progressive_key_visual.jpg"},
+    {title:"Fairy Tail", year:"2009–2019", creator:"Hiro Mashima", studio:"A-1 Pictures, Studio Deen", img:"https://upload.wikimedia.org/wikipedia/en/3/3b/Fairy_Tail_cover_volume_1.jpg"},
+    {title:"Hunter x Hunter (2011)", year:"2011–2014", creator:"Yoshihiro Togashi", studio:"Madhouse", img:"https://upload.wikimedia.org/wikipedia/en/9/99/Hunter_x_Hunter_2011_key_visual.jpg"},
+    {title:"Gintama", year:"2006–2018", creator:"Hideaki Sorachi", studio:"Sunrise", img:"https://upload.wikimedia.org/wikipedia/en/0/09/Gintama_poster.jpg"},
+    
+    {title:"Mob Psycho 100", year:"2016–Present", creator:"ONE", studio:"Bones", img:"https://upload.wikimedia.org/wikipedia/en/1/1c/Mob_Psycho_100_poster.jpg"},
+    {title:"One Punch Man", year:"2015–Present", creator:"ONE & Yusuke Murata", studio:"Madhouse / J.C.Staff", img:"https://upload.wikimedia.org/wikipedia/en/2/23/One_Punch_Man_vol_1.jpg"},
+    {title:"Dragon Ball Z", year:"1989–1996", creator:"Akira Toriyama", studio:"Toei Animation", img:"https://upload.wikimedia.org/wikipedia/en/2/21/Dragon_Ball_Z_DVD.jpg"},
+    {title:"Dorohedoro", year:"2020", creator:"Q Hayashida", studio:"MAPPA", img:"https://upload.wikimedia.org/wikipedia/en/d/d9/Dorohedoro.jpg"},
+    {title:"Cowboy Bebop", year:"1998", creator:"Hajime Yatate", studio:"Sunrise", img:"https://upload.wikimedia.org/wikipedia/en/3/3c/Cowboy_Bebop_%28anime%29.jpg"},
+    {title:"Neon Genesis Evangelion", year:"1995–1996", creator:"Hideaki Anno", studio:"Gainax", img:"https://upload.wikimedia.org/wikipedia/en/7/7c/Neon_Genesis_Evangelion.jpg"},
+    {title:"Your Lie in April", year:"2014–2015", creator:"Naoshi Arakawa", studio:"A-1 Pictures", img:"https://upload.wikimedia.org/wikipedia/en/9/9c/Your_Lie_in_April_cover.jpg"},
+    {title:"Clannad", year:"2007–2008", creator:"Juri Adachi", studio:"Kyoto Animation", img:"https://upload.wikimedia.org/wikipedia/en/a/a9/Clannad_cover.jpg"},
+    {title:"Toradora!", year:"2008", creator:"Yuyuko Takemiya", studio:"J.C.Staff", img:"https://upload.wikimedia.org/wikipedia/en/7/72/Toradora%21.jpg"},
+    {title:"Re:Zero − Starting Life in Another World", year:"2016–Present", creator:"Tappei Nagatsuki", studio:"White Fox", img:"https://upload.wikimedia.org/wikipedia/en/2/29/Re_Zero_kv.jpg"},
+    {title:"Kaguya-sama: Love Is War", year:"2019–Present", creator:"Aka Akasaka", studio:"A-1 Pictures", img:"https://upload.wikimedia.org/wikipedia/en/3/3c/Kaguya-sama_Love_Is_War.jpg"},
+    
+    {title:"Blue Exorcist", year:"2011–Present", creator:"Kazue Kato", studio:"A-1 Pictures", img:"https://upload.wikimedia.org/wikipedia/en/f/fa/Blue_Exorcist.jpg"},
+    {title:"FLCL", year:"2000–Present", creator:"Kazuhiko Shimamoto", studio:"Gainax / Production I.G", img:"https://upload.wikimedia.org/wikipedia/en/0/0b/FLCL.jpg"},
+    {title:"Made in Abyss", year:"2017–Present", creator:"Akihito Tsukushi", studio:"Kinema Citrus", img:"https://upload.wikimedia.org/wikipedia/en/6/68/Made_in_Abyss.jpg"},
+    {title:"Anohana: The Flower We Saw That Day", year:"2011", creator:"supercell", studio:"A-1 Pictures", img:"https://upload.wikimedia.org/wikipedia/en/8/8c/Anohana_Key_Visual.jpg"},
+    {title:"The Rising of the Shield Hero", year:"2019–Present", creator:"Aneko Yusagi", studio:"Kinema Citrus", img:"https://upload.wikimedia.org/wikipedia/en/3/3c/Shield_Hero.jpg"},
+    {title:"That Time I Got Reincarnated as a Slime", year:"2018–Present", creator:"Fuse", studio:"8bit", img:"https://upload.wikimedia.org/wikipedia/en/8/83/That_Time_I_Got_Reincarnated_as_a_Slime.jpg"},
+    {title:"No Game No Life", year:"2014", creator:"Yuu Kamiya", studio:"Madhouse", img:"https://upload.wikimedia.org/wikipedia/en/3/37/No_Game_No_Life.jpg"},
+    {title:"Gurren Lagann", year:"2007", creator:"Gainax", studio:"Gainax", img:"https://upload.wikimedia.org/wikipedia/en/3/31/Gurren_Lagann_poster.jpg"},
+    
+    {title:"Sword Art Online: Alicization", year:"2018–2020", creator:"Reki Kawahara", studio:"A-1 Pictures", img:"https://upload.wikimedia.org/wikipedia/en/6/6e/SAO_Alicization.jpg"},
+    {title:"Fruits Basket (2019)", year:"2019–2021", creator:"Natsuki Takaya", studio:"TMS Entertainment", img:"https://upload.wikimedia.org/wikipedia/en/0/08/Fruits_Basket_2019.jpg"},
+    {title:"Your Name", year:"2016", creator:"Makoto Shinkai", studio:"CoMix Wave Films", img:"https://upload.wikimedia.org/wikipedia/en/0/0b/Your_Name_poster.jpg"},
+    {title:"A Silent Voice", year:"2016", creator:"Yoshitoki Oima", studio:"Kyoto Animation", img:"https://upload.wikimedia.org/wikipedia/en/6/67/A_Silent_Voice_%28film%29.jpg"},
+    {title:"Weathering With You", year:"2019", creator:"Makoto Shinkai", studio:"CoMix Wave Films", img:"https://upload.wikimedia.org/wikipedia/en/a/a3/Weathering_With_You.jpg"},
+    {title:"Violet Evergarden", year:"2018", creator:"Kana Akatsuki", studio:"Kyoto Animation", img:"https://upload.wikimedia.org/wikipedia/en/6/6f/Violet_Evergarden.jpg"},
+];
+
+// Generate Anime Cards
+const container = document.getElementById("animeContainer");
+
+animeList.forEach(anime=>{
+    const card = document.createElement("div");
+    card.className = "anime-card";
+    card.innerHTML = `
+        <img src="${anime.img}" alt="${anime.title}">
+        <div>
+            <h3>${anime.title}</h3>
+            <p><b>Release Year:</b> ${anime.year}</p>
+            <p><b>Manga Creator:</b> ${anime.creator}</p>
+            <p><b>Anime Studio:</b> ${anime.studio}</p>
+        </div>
+    `;
+   card.querySelector("div").appendChild(createLinkSection());
+    container.appendChild(card);
+});
+
+function createLinkSection() {
+    const linkSection = document.createElement("div");
+    linkSection.style.margin = "30px 0";
+    linkSection.innerHTML = `
+        <p style="font-size:18px; color:#ff3399;">You can watch anime here</p>
+        <a href="https://www.crunchyroll.com/" target="_blank" class="neon-button" style="background:#ff66aa; border:2px solid #ff99cc;">Click Here paid</a>
+        <a href="https://saltanime.in/" target="_blank" class="neon-button" style="background:#ff66aa; border:2px solid #ff99cc;">Click Here free</a>
+    `;
+    return linkSection;
+}
+</script>
+
+</body>
+</html>
