@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anime Games Universe</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #0f0f0f); /* Dark gaming gradient */
+    color: #00ffea;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    padding: 50px 20px;
+    background: #111;
+    text-shadow: 0 0 10px #00ffea, 0 0 20px #ff00ff;
+}
+
+header h1 {
+    font-size: 50px;
+    color: #00ffea;
+}
+
+header p {
+    font-size: 18px;
+}
+
+/* Neon Buttons */
+.neon-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #0ff;
+    background: transparent;
+    border: 2px solid #0ff;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #ff00ff;
+    transition: 0.3s;
+}
+
+.neon-button:hover {
+    background: #0ff;
+    color: #000;
+    box-shadow: 0 0 20px #0ff, 0 0 40px #ff00ff;
+}
+
+/* Game Cards */
+.game-card {
+    background: rgba(0,0,0,0.5);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 15px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border: 2px solid #00ffea;
+    box-shadow: 0 0 15px #00ffea, 0 0 30px #ff00ff;
+    transition: 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px #00ffea, 0 0 50px #ff00ff;
+}
+
+.game-card img {
+    width: 120px;
+    border-radius: 10px;
+    border: 1px solid #0ff;
+}
+
+.game-card div {
+    text-align: left;
+}
+
+.game-card h3 {
+    margin: 0;
+    color: #0ff;
+}
+
+.game-card p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 14px;
+    color: #00ffe0;
+    opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎮 Anime Games Universe 🎮</h1>
+    <p>Explore release dates, companies, devices, and images of anime games!</p>
+
+    <!-- Buttons to other pages -->
+<div>
+        <a href="index.html" class="neon-button">🏠 Main Page</a>
+    </div>
+</header>
+
+<div id="gameContainer"></div>
+
+<footer>
+    © 2026 Anime Games Universe | Made in VS Code 💖
+</footer>
+
+<script>
+// Example game list
+const gameList = [
+    {name:"Genshin Impact", date:"2020-09-28", company:"miHoYo", devices:"Android, iOS, Windows, PS4, PS5", img:"https://upload.wikimedia.org/wikipedia/en/f/fb/Genshin_Impact_cover.jpg"},
+    {name:"Dragon Ball FighterZ", date:"2018-01-26", company:"Arc System Works", devices:"Windows, PS4, Switch, Xbox One", img:"https://upload.wikimedia.org/wikipedia/en/0/0e/Dragon_Ball_FighterZ_cover_art.jpg"},
+    {name:"Naruto Shippuden: Ultimate Ninja Storm 4", date:"2016-02-04", company:"CyberConnect2", devices:"Windows, PS4, Xbox One", img:"https://upload.wikimedia.org/wikipedia/en/0/0d/Naruto_Shippuden_Ultimate_Ninja_Storm_4.jpg"},
+    {name:"One Piece: Pirate Warriors 4", date:"2020-03-27", company:"Omega Force", devices:"Windows, PS4, Switch, Xbox One", img:"https://upload.wikimedia.org/wikipedia/en/4/46/One_Piece_Pirate_Warriors_4_cover.jpg"},
+    {name:"My Hero One's Justice 2", date:"2020-03-12", company:"Byking", devices:"Windows, PS4, Switch, Xbox One", img:"https://upload.wikimedia.org/wikipedia/en/f/f1/My_Hero_One%27s_Justice_2_cover.jpg"},
+    {name:"Attack on Titan 2", date:"2018-03-20", company:"Omega Force", devices:"Windows, PS4, Switch, Xbox One", img:"https://upload.wikimedia.org/wikipedia/en/e/e0/Attack_on_Titan_2_cover.jpg"},
+    {name:"Sword Art Online: Alicization Lycoris", date:"2020-07-10", company:"Bandai Namco", devices:"Windows, PS4, Xbox One", img:"https://upload.wikimedia.org/wikipedia/en/6/6e/SAO_Alicization.jpg"}
+];
+
+// Generate game cards dynamically
+const container = document.getElementById("gameContainer");
+
+gameList.forEach(game=>{
+    const card = document.createElement("div");
+    card.className = "game-card";
+    card.innerHTML = `
+        <img src="${game.img}" alt="${game.name}">
+        <div>
+            <h3>${game.name}</h3>
+            <p><b>Release Date:</b> ${game.date}</p>
+            <p><b>Company:</b> ${game.company}</p>
+            <p><b>Devices:</b> ${game.devices}</p>
+        </div>
+    `;
+    container.appendChild(card);
+});
+</script>
+
+</body>
+</html>

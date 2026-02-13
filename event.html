@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sakura Festival Event</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to top, #ffe6f0, #ffccf2, #ffb3f5);
+    overflow-x: hidden;
+    text-align: center;
+}
+
+/* Sakura Petals Falling */
+.sakura {
+    position: fixed;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    background: url('https://i.imgur.com/YpR1QvK.png') no-repeat;
+    background-size: cover;
+    animation: fall 10s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Header */
+header {
+    padding: 50px 20px;
+}
+
+header h1 {
+    font-size: 60px;
+    color: #ff3399;
+    text-shadow: 0 0 10px #ff66cc;
+}
+
+/* Sakura Trees */
+.tree {
+    position: relative;
+    display: inline-block;
+    margin: 40px;
+    width: 150px;
+    height: 250px;
+    background: #8b4513; /* tree trunk */
+    border-radius: 20px 20px 0 0;
+}
+
+.tree::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 150px;
+    background: radial-gradient(circle, #ff99dd 0%, #ff66cc 70%);
+    border-radius: 50%;
+    animation: bloom 5s ease-in-out infinite alternate;
+}
+
+@keyframes bloom {
+    0% { transform: translateX(-50%) scale(0.8); opacity: 0.7; }
+    100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+/* Event Info Cards */
+.event-card {
+    background: rgba(255,255,255,0.1);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #ff66cc;
+    transition: 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px #ff99dd;
+}
+
+.event-card h3 {
+    color: #ff3399;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌸 Japan Sakura Festival 2026 🌸</h1>
+    <p>Celebrate the beauty of cherry blossoms and anime culture!</p>
+   <div>
+       <a href="index.html" class="neon-button">🏠 Main Page</a>
+   </div>
+</header>
+
+<!-- Event Info -->
+<div class="event-card">
+    <h3>🌸 Cherry Blossom Viewing</h3>
+    <p>Join the Sakura Festival under blooming cherry trees. Enjoy anime-themed food stalls and cosplay events!</p>
+    <p>Date: March 25 - April 5, 2026</p>
+</div>
+
+<div class="event-card">
+    <h3>🎎 Cultural Performance</h3>
+    <p>Traditional Japanese music, tea ceremonies, and live anime performances.</p>
+    <p>Location: Tokyo Sakura Park</p>
+</div>
+
+<div class="event-card">
+    <h3>🎨 Anime Art Exhibition</h3>
+    <p>View artwork from upcoming 2026 anime and exclusive concept art from popular series.</p>
+</div>
+
+<!-- Sakura falling petals -->
+<div id="sakuraContainer"></div>
+
+<script>
+// Generate falling petals
+const container = document.getElementById('sakuraContainer');
+for(let i=0; i<30; i++){
+    let sakura = document.createElement('div');
+    sakura.className = 'sakura';
+    sakura.style.left = Math.random() * window.innerWidth + 'px';
+    sakura.style.animationDuration = (5 + Math.random() * 5) + 's';
+    sakura.style.width = 15 + Math.random() * 20 + 'px';
+    sakura.style.height = sakura.style.width;
+    container.appendChild(sakura);
+}
+</script>
+
+</body>
+</html>
